@@ -6,3 +6,9 @@ export interface Order {
   updatedAt: Date;
   deletedAt: Date | null;
 }
+
+export interface CreateOrder {
+  note: string;
+  orderedBy: number;
+  products: number[];
+}

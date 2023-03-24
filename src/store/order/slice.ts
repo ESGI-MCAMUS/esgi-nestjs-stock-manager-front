@@ -2,7 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { CACHE_KEY, endpoint, initialState, reducerPath } from "./constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { baseQuery } from "../api";
-import { Order } from "../models/orders.model";
+import { CreateOrder, Order } from "../models/orders.model";
 
 export const ordersApi = createApi({
   reducerPath,
@@ -23,19 +23,19 @@ export const ordersApi = createApi({
       }),
     }),
 
-    createOrder: builder.mutation<Order, Order>({
-      query: (supplier) => ({
+    createOrder: builder.mutation<Order, CreateOrder>({
+      query: (order) => ({
         url: `${endpoint.create}`,
         method: "POST",
-        body: supplier,
+        body: order,
       }),
     }),
 
     updateOrder: builder.mutation<Order, Partial<Order>>({
-      query: ({ id, ...supplier }) => ({
+      query: ({ id, ...order }) => ({
         url: `${endpoint.update(id!)}`,
         method: "PATCH",
-        body: supplier,
+        body: order,
       }),
     }),
 
