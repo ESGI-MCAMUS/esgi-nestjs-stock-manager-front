@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  Grid,
-  Input,
-  Row,
-  Spacer,
-  Text,
-} from "@nextui-org/react";
+import { Button, Card, Grid, Input, Spacer, Text } from "@nextui-org/react";
 import React, * as react from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -176,6 +168,7 @@ export const HomePage: React.FunctionComponent<HomePageProps> = ({}) => {
                   title={product.name}
                   description={product.description}
                   price={product.price}
+                  ean13={product.ean13}
                   orderAction={handleOrder}
                 />
               ))
@@ -186,6 +179,7 @@ export const HomePage: React.FunctionComponent<HomePageProps> = ({}) => {
                   title={product.name}
                   description={product.description}
                   price={product.price}
+                  ean13={product.ean13}
                   orderAction={handleOrder}
                 />
               ))}

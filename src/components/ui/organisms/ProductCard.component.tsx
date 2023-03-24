@@ -8,18 +8,20 @@ import {
   Spacer,
 } from "@nextui-org/react";
 import * as react from "react";
+import Barcode from "react-barcode";
 
 interface ProductCardProps {
   productId: number;
   title: string;
   description: string;
   price: number;
+  ean13: string;
   orderAction: (quantity: number, productId: number) => void;
 }
 
 export const ProductCardComponent: React.FunctionComponent<
   ProductCardProps
-> = ({ title, description, price, orderAction, productId }) => {
+> = ({ title, description, price, orderAction, productId, ean13 }) => {
   const [quantity, setQuantity] = react.useState(1);
   return (
     <Grid xs={12} md={4}>
@@ -37,6 +39,17 @@ export const ProductCardComponent: React.FunctionComponent<
             aria-label="price"
             value={`${price}`}
           />
+          <Spacer y={1} />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Barcode value={ean13} />
+          </div>
         </Card.Body>
         <Card.Divider />
         <Card.Footer>
