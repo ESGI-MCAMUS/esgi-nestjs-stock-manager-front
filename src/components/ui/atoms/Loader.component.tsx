@@ -11,7 +11,7 @@ export const LoaderComponent: React.FunctionComponent<LoaderProps> = ({
   return (
     <div
       style={{
-        position: "absolute",
+        position: "fixed",
         top: 25,
         width: "100vw",
         display: isLoading ? "flex" : "none",
