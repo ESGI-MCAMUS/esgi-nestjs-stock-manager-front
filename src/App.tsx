@@ -1,55 +1,42 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { persistStore } from "redux-persist";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { NextUIProvider } from "@nextui-org/react";
+import { StoreLoaderComponent } from "./components/ui/molecules/StoreLoader.component";
+import { MainPage } from "./pages/Main.page";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   let persistor = persistStore(store);
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-      <Provider store={store}>
-        <PersistGate
-          persistor={persistor}
-          loading={
-            <div
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1>Chargement...</h1>
-            </div>
-          }
-        >
-          <div>
-            <a href="https://vitejs.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://reactjs.org" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-          </div>
-          <h1>Vite + React</h1>
-          <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>
-              count is {count}
-            </button>
-            <p>
-              Edit <code>src/App.tsx</code> and save to test HMR
-            </p>
-          </div>
-          <p className="read-the-docs">
-            Click on the Vite and React logos to learn more
-          </p>
-        </PersistGate>
-      </Provider>
+      <NextUIProvider>
+        <Provider store={store}>
+          <PersistGate
+            persistor={persistor}
+            loading={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100vw",
+                  height: "100vh",
+                }}
+              >
+                <StoreLoaderComponent />
+              </div>
+            }
+          >
+            <BrowserRouter>
+              <MainPage />
+            </BrowserRouter>
+          </PersistGate>
+        </Provider>
+      </NextUIProvider>
     </div>
   );
 }
