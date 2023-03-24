@@ -39,7 +39,8 @@ export const OrdersPage: React.FunctionComponent<OrdersProps> = ({}) => {
   return (
     <div
       style={{
-        marginTop: "15vh",
+        paddingTop: "15vh",
+        paddingBottom: "15vh",
         display: "flex",
         flexDirection: "column",
         paddingLeft: "10vw",
