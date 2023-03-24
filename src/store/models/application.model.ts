@@ -39,6 +39,7 @@ export interface LoginRequest {
 
 export interface LoginResponse {
   access_token: string;
+  dataValues: User;
 }
 
 export interface RegisterRequest {
