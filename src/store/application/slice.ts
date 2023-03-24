@@ -45,11 +45,15 @@ export const applicationSlice = createSlice({
     },
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
+    },
+    disconnect: (state) => {
+      state.user = null;
+      state.token = null;
     }
   },
 });
 
-export const { setUser, setLoading, setToken } =
+export const { setUser, setLoading, setToken, disconnect } =
   applicationSlice.actions;
 
 export const { useLoginMutation, useRegisterMutation, useGetOrdersQuery } = applicationApi;
