@@ -30,6 +30,12 @@ export const applicationApi = createApi({
         method: "GET",
       }),
     }),
+    getAllUsers: builder.query<User[], void>({
+      query: () => ({
+        url: `${endpoint.users}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -56,4 +62,4 @@ export const applicationSlice = createSlice({
 export const { setUser, setLoading, setToken, disconnect } =
   applicationSlice.actions;
 
-export const { useLoginMutation, useRegisterMutation, useGetOrdersQuery } = applicationApi;
+export const { useLoginMutation, useRegisterMutation, useGetOrdersQuery, useGetAllUsersQuery } = applicationApi;

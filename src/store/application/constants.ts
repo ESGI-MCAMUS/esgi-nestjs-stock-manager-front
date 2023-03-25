@@ -14,4 +14,5 @@ export const endpoint = {
   login: "auth/login",
   register: "auth/register",
   orders: (id: number) => `users/${id}/orders`,
+  users: "users",
 };
