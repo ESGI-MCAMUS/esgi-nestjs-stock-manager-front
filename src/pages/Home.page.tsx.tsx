@@ -61,7 +61,7 @@ export const HomePage: React.FunctionComponent<HomePageProps> = ({}) => {
 
   const handleOrder = (quantity: number, productId: number) => {
     orderProducts({
-      products: arrayUtils.repeat(productId, quantity),
+      products: [productId],
       note: "Pas de note...",
       orderedBy: user!.id,
     });

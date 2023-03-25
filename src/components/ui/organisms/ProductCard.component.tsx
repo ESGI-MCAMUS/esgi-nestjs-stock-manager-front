@@ -54,17 +54,6 @@ export const ProductCardComponent: React.FunctionComponent<
         <Card.Divider />
         <Card.Footer>
           <Row justify="flex-end">
-            <Input
-              type={"number"}
-              min={1}
-              max={99}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              fullWidth
-              value={quantity}
-              placeholder="Quantité"
-              size="sm"
-              aria-label="Quantité"
-            />
             <Button
               size="sm"
               auto
