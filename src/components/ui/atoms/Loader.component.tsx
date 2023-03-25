@@ -15,7 +15,7 @@ export const LoaderComponent: React.FunctionComponent<LoaderProps> = ({
         top: 25,
         width: "100vw",
         display: isLoading ? "flex" : "none",
-        zIndex: 1000,
+        zIndex: 99999,
       }}
     >
       <Loading
