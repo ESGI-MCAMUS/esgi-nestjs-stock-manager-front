@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { applicationState } from "../store/application/selector";
 import { setLoading, useGetOrdersQuery } from "../store/application/slice";
+import { Order } from "../store/models/orders.model";
 
 interface OrdersProps {}
 
@@ -18,6 +19,8 @@ export const OrdersPage: React.FunctionComponent<OrdersProps> = ({}) => {
     isSuccess: ordersSuccess,
     refetch: refetchOrders,
   } = useGetOrdersQuery(user!.id);
+
+  const [ordersList, setOrdersList] = React.useState<Order[]>([]);
 
   React.useEffect(() => {
     refetchOrders();
@@ -33,6 +36,7 @@ export const OrdersPage: React.FunctionComponent<OrdersProps> = ({}) => {
       );
     } else if (ordersSuccess) {
       dispatch(setLoading(false));
+      setOrdersList(orders!);
     }
   }, [ordersFetching, ordersError, ordersSuccess]);
 
@@ -64,12 +68,12 @@ export const OrdersPage: React.FunctionComponent<OrdersProps> = ({}) => {
           <Table.Column>EAN13 PRODUIT</Table.Column>
         </Table.Header>
         <Table.Body>
-          {orders!.map((order) => (
+          {ordersList.map((order) => (
             <Table.Row key={order.id}>
               <Table.Cell>{order.id}</Table.Cell>
               <Table.Cell>{order.note}</Table.Cell>
-              <Table.Cell>{order.products[0].name}</Table.Cell>
-              <Table.Cell>{order.products[0].price}€</Table.Cell>
+              <Table.Cell>{order.products[0]?.name ?? "-"}</Table.Cell>
+              <Table.Cell>{order.products[0]?.price ?? "-"}€</Table.Cell>
               <Table.Cell>
                 <div
                   style={{
@@ -79,7 +83,10 @@ export const OrdersPage: React.FunctionComponent<OrdersProps> = ({}) => {
                     alignItems: "center",
                   }}
                 >
-                  <Barcode value={order.products[0].ean13} height={20} />
+                  <Barcode
+                    value={order.products[0]?.ean13 ?? "-"}
+                    height={20}
+                  />
                 </div>
               </Table.Cell>
             </Table.Row>
