@@ -60,7 +60,6 @@ export const AdminPage: React.FunctionComponent<AdminProps> = ({}) => {
     } else if (suppliersSuccess) {
       dispatch(setLoading(false));
       setSuppliersList(suppliers!);
-      console.log(suppliers);
     }
   }, [suppliersFetching, suppliersError, suppliersSuccess, suppliers]);
 
@@ -85,7 +84,6 @@ export const AdminPage: React.FunctionComponent<AdminProps> = ({}) => {
     } else if (usersSuccess) {
       dispatch(setLoading(false));
       setUsersFetched(users!);
-      console.log(users);
     }
   }, [usersFetching, usersError, usersSuccess, users]);
 
