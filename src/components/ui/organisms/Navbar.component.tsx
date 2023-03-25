@@ -26,7 +26,7 @@ export const NavbarComponent: React.FunctionComponent<
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 100,
+        zIndex: 9999,
       }}
     >
       <Navbar.Brand>
@@ -66,7 +66,15 @@ export const NavbarComponent: React.FunctionComponent<
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Item>
-          <Button auto flat as={Link} onClick={() => dispatch(disconnect())}>
+          <Button
+            auto
+            flat
+            as={Link}
+            onClick={() => {
+              dispatch(disconnect());
+              nav("/login");
+            }}
+          >
             Se déconnecter
           </Button>
         </Navbar.Item>
