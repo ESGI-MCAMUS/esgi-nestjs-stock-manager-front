@@ -11,6 +11,7 @@ import { RegisterPage } from "./Register.page";
 import "react-toastify/dist/ReactToastify.css";
 import { NavbarComponent } from "../components/ui/organisms/Navbar.component";
 import { OrdersPage } from "./Orders.page";
+import { AdminPage } from "./Admin.page";
 
 interface MainPageProps {}
 
@@ -23,11 +24,16 @@ export const MainPage: React.FunctionComponent<MainPageProps> = ({}) => {
   return (
     <div>
       <LoaderComponent isLoading={loading} />
-      <ToastContainer />
+      <ToastContainer
+        style={{
+          zIndex: 99999,
+        }}
+      />
       <NavbarComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/admin" element={<AdminPage />} />
         {/* ENROLLMENT */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
