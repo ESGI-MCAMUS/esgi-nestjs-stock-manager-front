@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { baseQuery } from "../api";
 import { LoginRequest, LoginResponse, RegisterRequest, User } from "../models/application.model";
 import { Order } from "../models/orders.model";
-import { Supplier } from "../models/suppliers.model";
+import { CreateSupplier, Supplier } from "../models/suppliers.model";
 
 export const supplierApi = createApi({
   reducerPath,
@@ -25,7 +25,7 @@ export const supplierApi = createApi({
       }),
     }),
 
-    createSupplier: builder.mutation<Supplier, Supplier>({
+    createSupplier: builder.mutation<Supplier, CreateSupplier>({
       query: (supplier) => ({
         url: `${endpoint.create}`,
         method: "POST",
