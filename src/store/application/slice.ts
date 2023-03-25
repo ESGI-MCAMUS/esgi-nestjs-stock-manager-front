@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { baseQuery } from "../api";
 import { LoginRequest, LoginResponse, RegisterRequest, User } from "../models/application.model";
 import { Order } from "../models/orders.model";
+import { Supplier } from "../models/suppliers.model";
 
 export const applicationApi = createApi({
   reducerPath,
@@ -27,6 +28,12 @@ export const applicationApi = createApi({
     getOrders: builder.query<Order[], number>({
       query: (id) => ({
         url: `${endpoint.orders(id)}`,
+        method: "GET",
+      }),
+    }),
+    getSupplier: builder.query<Supplier, number>({
+      query: (id) => ({
+        url: `${endpoint.supplier(id)}`,
         method: "GET",
       }),
     }),
@@ -62,4 +69,4 @@ export const applicationSlice = createSlice({
 export const { setUser, setLoading, setToken, disconnect } =
   applicationSlice.actions;
 
-export const { useLoginMutation, useRegisterMutation, useGetOrdersQuery, useGetAllUsersQuery } = applicationApi;
+export const { useLoginMutation, useRegisterMutation, useGetOrdersQuery, useGetAllUsersQuery, useGetSupplierQuery } = applicationApi;

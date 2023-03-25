@@ -12,4 +12,5 @@ export const endpoint = {
   create: "suppliers",
   update: (id: number) => `suppliers/${id}`,
   delete: (id: number) => `suppliers/${id}`,
+  products: (id: number) => `suppliers/${id}/products`,
 };

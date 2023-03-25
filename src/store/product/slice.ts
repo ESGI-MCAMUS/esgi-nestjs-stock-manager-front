@@ -2,7 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { CACHE_KEY, endpoint, initialState, reducerPath } from "./constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { baseQuery } from "../api";
-import { Product } from "../models/product.model";
+import { CreateProduct, Product } from "../models/product.model";
 
 export const productsApi = createApi({
   reducerPath,
@@ -23,7 +23,7 @@ export const productsApi = createApi({
       }),
     }),
 
-    createProduct: builder.mutation<Product, Product>({
+    createProduct: builder.mutation<Product, CreateProduct>({
       query: (supplier) => ({
         url: `${endpoint.create}`,
         method: "POST",

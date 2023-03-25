@@ -5,6 +5,7 @@ import { baseQuery } from "../api";
 import { LoginRequest, LoginResponse, RegisterRequest, User } from "../models/application.model";
 import { Order } from "../models/orders.model";
 import { CreateSupplier, Supplier } from "../models/suppliers.model";
+import { Product } from "../models/product.model";
 
 export const supplierApi = createApi({
   reducerPath,
@@ -14,6 +15,13 @@ export const supplierApi = createApi({
     getAllSuppliers: builder.query<Supplier[], void>({
       query: () => ({
         url: `${endpoint.getAll}`,
+        method: "GET",
+      }),
+    }),
+
+    getSuppliersProducts: builder.query<Product[], number>({
+      query: (id) => ({
+        url: `${endpoint.products(id)}`,
         method: "GET",
       }),
     }),
@@ -63,4 +71,4 @@ export const supplierSlice = createSlice({
 export const { setSupplier } =
   supplierSlice.actions;
 
-export const { useGetAllSuppliersQuery, useGetOneSupplierQuery, useCreateSupplierMutation, useUpdateSupplierMutation, useDeleteSupplierMutation } = supplierApi;
+export const { useGetAllSuppliersQuery, useGetOneSupplierQuery, useCreateSupplierMutation, useUpdateSupplierMutation, useDeleteSupplierMutation, useGetSuppliersProductsQuery } = supplierApi;
